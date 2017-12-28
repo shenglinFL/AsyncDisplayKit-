@@ -47,22 +47,40 @@ class TodoListCellNode: ASCellNode {
         let imageNode = ASImageNode()
         imageNode.backgroundColor = UIColor.lightGray
         imageNode.isLayerBacked = true
+        imageNode.style.height = ASDimensionMake(0.5)
         return imageNode
     }()
     
-//    private let timeLineLineImage: ASImageNode = {
-//        let imageNode = ASImageNode()
-//        imageNode.image = UIImage.as_imageNamed("icon_left_img1")
-//        imageNode.isLayerBacked = true
-//        return imageNode
-//    }()
-//
-//    private let timeLinePointImage: ASImageNode = {
-//        let imageNode = ASImageNode()
-//        imageNode.image = UIImage.as_imageNamed("icon_left_img2")
-//        imageNode.isLayerBacked = true
-//        return imageNode
-//    }()
+    private let timeLineLineImage: ASImageNode = {
+        let imageNode = ASImageNode()
+        imageNode.image = UIImage.as_imageNamed("icon_left_img1")
+        imageNode.isLayerBacked = true
+        imageNode.style.width = ASDimensionMake(0.5)
+        return imageNode
+    }()
+
+    private let timeLinePointImage: ASImageNode = {
+        let imageNode = ASImageNode()
+        imageNode.image = UIImage.as_imageNamed("icon_left_img2")
+        imageNode.isLayerBacked = true
+        return imageNode
+    }()
+    
+    private let contentTextNode1: ASTextNode = {
+        let textNode = ASTextNode()
+        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)]
+        textNode.attributedText = NSMutableAttributedString(string: "--", attributes: attributes)
+        textNode.isLayerBacked = true
+        return textNode
+    }()
+    
+    private let contentTextNode2: ASTextNode = {
+        let textNode = ASTextNode()
+        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)]
+        textNode.attributedText = NSMutableAttributedString(string: "--", attributes: attributes)
+        textNode.isLayerBacked = true
+        return textNode
+    }()
 
     convenience init(index: Int) {
         self.init()
@@ -82,24 +100,32 @@ class TodoListCellNode: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let specTime = ASStackLayoutSpec(direction: .horizontal, spacing: 8, justifyContent: .center, alignItems: .start, children: [timeIconImageNode, timeTextNode])
-//        let specTitle = ASStackLayoutSpec(direction: .horizontal, spacing: 20, justifyContent: .start, alignItems: .start, children: [specTime, treatTypeTextNode])
+        let specTime = ASStackLayoutSpec(direction: .horizontal, spacing: 8, justifyContent: .center, alignItems: .center, children: [timeIconImageNode, timeTextNode])
         
         let specTreatType = ASRelativeLayoutSpec(horizontalPosition: .end, verticalPosition: .center, sizingOption: .minimumWidth, child: treatTypeTextNode)
-        let specTitle = ASStackLayoutSpec(direction: .horizontal, spacing: 20, justifyContent: .start, alignItems: .start, children: [specTime, specTreatType])
-        
-       
-        
-        let specTitleAll = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 12, left: 22, bottom: 12, right: 14), child: specTitle)
-        //let specAll = ASOverlayLayoutSpec(child: specTitleAll, overlay: todoTypeImageNode)
-        
-        specTreatType.style.flexShrink = 1
         specTreatType.style.flexGrow = 1
         
+        let specTitle = ASStackLayoutSpec(direction: .horizontal, spacing: 20, justifyContent: .center, alignItems: .start, children: [specTime, specTreatType])
+
+        let specTitleAll = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 14), child: specTitle)
+
+        let specTitleAndLine = ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .start, children: [specTitleAll, segmentLine])
+        
         todoTypeImageNode.style.layoutPosition = CGPoint(x: 0, y: 0)
+        let specTodoTypeImage = ASRelativeLayoutSpec(horizontalPosition: .start, verticalPosition: .start, sizingOption: .minimumSize, child: todoTypeImageNode)
         
+        timeLinePointImage.style.layoutPosition = CGPoint(x: 25, y: 15)
+        timeLinePointImage.style.preferredSize = CGSize(width: 10, height: 10)
+        let specTimeLinePoint = ASRelativeLayoutSpec(horizontalPosition: .center, verticalPosition: .center, sizingOption: .minimumSize, child: timeLinePointImage)
         
-        let specAll = ASAbsoluteLayoutSpec(children: [specTitleAll, todoTypeImageNode])
+        let specleftLine1 = ASOverlayLayoutSpec(child: timeLineLineImage, overlay: specTimeLinePoint)
+        let specContentLine1 = ASStackLayoutSpec(direction: .horizontal, spacing: 12, justifyContent: .center, alignItems: .start, children: [specleftLine1, contentTextNode1])
+        
+        let specTitleAndContent = ASStackLayoutSpec(direction: .vertical, spacing: 20, justifyContent: .center, alignItems: .start, children: [specTitleAndLine, specContentLine1])
+        
+        let specTitleAndContentInset = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 12, left: 22, bottom: 12, right: 14), child: specTitleAndContent)
+        
+        let specAll = ASOverlayLayoutSpec(child: specTitleAndContentInset, overlay: specTodoTypeImage)
         
         return specAll
     }

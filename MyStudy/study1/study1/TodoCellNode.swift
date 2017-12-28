@@ -18,6 +18,8 @@ class TodoCellNode: ASCellNode {
     fileprivate let subTitleLabel: ASTextNode = {
         let textNode = ASTextNode()
         textNode.isLayerBacked = true
+//        textNode.placeholderColor = UIColor.groupTableViewBackground
+//        textNode.placeholderFadeDuration = 13
         return textNode
     }()
     
@@ -38,6 +40,11 @@ class TodoCellNode: ASCellNode {
         subTitleLabel.attributedText = NSMutableAttributedString(string: subTitle, attributes: attributes)
         
         //print(index)
+//        self.placeholderImage()
+//        self.placeholderFadeDuration = 3
+//
+        
+//        self.neverShowPlaceholders = true
 
     }
     

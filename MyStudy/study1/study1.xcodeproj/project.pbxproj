@@ -19,6 +19,8 @@
 		3C1841F41FF38FA6003E5481 /* MainViewCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1841F31FF38FA6003E5481 /* MainViewCellNode.swift */; };
 		3C1841F71FF39A26003E5481 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1841F61FF39A26003E5481 /* TodoListViewController.swift */; };
 		3C1841F91FF3A64F003E5481 /* TodoListCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1841F81FF3A64F003E5481 /* TodoListCellNode.swift */; };
+		3C1841FE1FF4E811003E5481 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1841FD1FF4E811003E5481 /* CustomViewController.swift */; };
+		3C1842001FF4E849003E5481 /* CustomNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1841FF1FF4E849003E5481 /* CustomNode.swift */; };
 		B5706DC1B4CE6338E1E7A552 /* Pods_study1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ED4E912C8F5EE592B6AB43 /* Pods_study1.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,8 @@
 		3C1841F31FF38FA6003E5481 /* MainViewCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCellNode.swift; sourceTree = "<group>"; };
 		3C1841F61FF39A26003E5481 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		3C1841F81FF3A64F003E5481 /* TodoListCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCellNode.swift; sourceTree = "<group>"; };
+		3C1841FD1FF4E811003E5481 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
+		3C1841FF1FF4E849003E5481 /* CustomNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNode.swift; sourceTree = "<group>"; };
 		47ED4E912C8F5EE592B6AB43 /* Pods_study1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_study1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4FFF9F4E53732CFB697525C /* Pods-study1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-study1.release.xcconfig"; path = "Pods/Target Support Files/Pods-study1/Pods-study1.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +86,7 @@
 				3C1841ED1FF3618A003E5481 /* TodoCellNode.swift */,
 				3C1841EF1FF375BB003E5481 /* TodoTestViewController.swift */,
 				3C1841F11FF3763D003E5481 /* TodoTableViewCell.swift */,
+				3C1841FA1FF4E7C2003E5481 /* CustomNode */,
 				3C1841F51FF39992003E5481 /* Todo */,
 				3C1841DB1FF34744003E5481 /* Main.storyboard */,
 				3C1841DE1FF34744003E5481 /* Assets.xcassets */,
@@ -98,6 +103,15 @@
 				3C1841F81FF3A64F003E5481 /* TodoListCellNode.swift */,
 			);
 			path = Todo;
+			sourceTree = "<group>";
+		};
+		3C1841FA1FF4E7C2003E5481 /* CustomNode */ = {
+			isa = PBXGroup;
+			children = (
+				3C1841FD1FF4E811003E5481 /* CustomViewController.swift */,
+				3C1841FF1FF4E849003E5481 /* CustomNode.swift */,
+			);
+			path = CustomNode;
 			sourceTree = "<group>";
 		};
 		C018C551C8E4AD202236E88F /* Pods */ = {
@@ -260,11 +274,13 @@
 			files = (
 				3C1841F71FF39A26003E5481 /* TodoListViewController.swift in Sources */,
 				3C1841F21FF3763D003E5481 /* TodoTableViewCell.swift in Sources */,
+				3C1842001FF4E849003E5481 /* CustomNode.swift in Sources */,
 				3C1841EC1FF35183003E5481 /* TodoViewController.swift in Sources */,
 				3C1841DA1FF34744003E5481 /* ViewController.swift in Sources */,
 				3C1841F91FF3A64F003E5481 /* TodoListCellNode.swift in Sources */,
 				3C1841EE1FF3618A003E5481 /* TodoCellNode.swift in Sources */,
 				3C1841F01FF375BB003E5481 /* TodoTestViewController.swift in Sources */,
+				3C1841FE1FF4E811003E5481 /* CustomViewController.swift in Sources */,
 				3C1841D81FF34744003E5481 /* AppDelegate.swift in Sources */,
 				3C1841F41FF38FA6003E5481 /* MainViewCellNode.swift in Sources */,
 			);
@@ -405,7 +421,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z2AK8HMU4Y;
+				DEVELOPMENT_TEAM = XQ9YLTYXWA;
 				INFOPLIST_FILE = study1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -422,7 +438,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z2AK8HMU4Y;
+				DEVELOPMENT_TEAM = XQ9YLTYXWA;
 				INFOPLIST_FILE = study1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

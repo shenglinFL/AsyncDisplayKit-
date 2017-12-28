@@ -39,13 +39,56 @@ class TodoViewController: UIViewController ,ASTableDelegate ,ASTableDataSource{
         return 1000//Int(INT16_MAX)
     }
     
+    private var indexPathesToBeReloaded: [IndexPath] = []
+    
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         return {
             let node = TodoCellNode(index: indexPath.row)
+//            node.neverShowPlaceholders = true
+//            node.placeholderEnabled = false
+//            node.placeholderShouldPersist()
+
             return node
         }
     }
     
+//    func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
+//        let cell = TodoCellNode(index: indexPath.row)
+//
+////        cell.neverShowPlaceholders = false
+////        if indexPathesToBeReloaded.contains(indexPath) {
+////            let oldCellNode = tableNode.nodeForRow(at: indexPath)
+////            cell.neverShowPlaceholders = true
+////            oldCellNode?.neverShowPlaceholders = true
+////            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+////                cell.neverShowPlaceholders = false
+////                if let indexP = self.indexPathesToBeReloaded.index(of: indexPath) {
+////                    self.indexPathesToBeReloaded.remove(at: indexP)
+////                }
+////            })
+////        }
+//        cell.neverShowPlaceholders = true
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            cell.neverShowPlaceholders = false
+//        }
+//        return cell
+//    }
+    
+    
+    func reloadDataActionHappensHere() {
+
+        let count = tableNode.dataSource?.tableNode?(tableNode, numberOfRowsInSection: 0) ?? 0
+        if count > 2 {
+            // 将肉眼可见的cell添加进indexPathesToBeReloaded中
+            indexPathesToBeReloaded.append(IndexPath(row: 0, section: 0))
+            indexPathesToBeReloaded.append(IndexPath(row: 1, section: 0))
+            indexPathesToBeReloaded.append(IndexPath(row: 2, section: 0))
+        }
+        tableNode.reloadData()
+
+    }
+    
+
 //    func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
 //        return {
 //            let node = TodoCellNode()
@@ -63,6 +106,7 @@ class TodoViewController: UIViewController ,ASTableDelegate ,ASTableDataSource{
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: true)
         tableNode.reloadData()
+        self.reloadDataActionHappensHere()
     }
     
     

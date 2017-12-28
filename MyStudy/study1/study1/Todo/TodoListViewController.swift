@@ -35,14 +35,14 @@ class TodoListViewController: UIViewController ,ASTableDelegate, ASTableDataSour
     }
     
     func tableNode(_ tableNode: ASTableNode, constrainedSizeForRowAt indexPath: IndexPath) -> ASSizeRange {
-        let min = CGSize(width: UIScreen.main.bounds.size.width, height: 50)
+        let min = CGSize(width: UIScreen.main.bounds.size.width, height: 100)
         let max = CGSize(width: UIScreen.main.bounds.size.width, height: CGFloat.greatestFiniteMagnitude)
         return ASSizeRange(min: min, max: max)
     }
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: true)
-        //tableNode.reloadData()
+        tableNode.reloadData()
     }
     
     

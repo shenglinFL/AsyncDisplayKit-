@@ -24,7 +24,7 @@ class ViewController: UIViewController ,ASTableDelegate ,ASTableDataSource{
         
         self.setFPSDebug(bool: true)
         
-        self.datas = ["ASTableNode","UITableView","TodoListDemo"]
+        self.datas = ["ASTableNode","UITableView","TodoListDemo","CustomNode"]
         
         self.createTableNode()
 //
@@ -107,6 +107,11 @@ class ViewController: UIViewController ,ASTableDelegate ,ASTableDataSource{
             let todoVC = TodoListViewController()
             self.navigationController?.pushViewController(todoVC, animated: true)
             break
+        case "CustomNode":
+            let customVC = CustomViewController()
+            self.navigationController?.pushViewController(customVC, animated: true)
+            break
+            
         default:
             
             break
