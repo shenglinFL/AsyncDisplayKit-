@@ -1,0 +1,6 @@
+framework module NodeExtension {
+  umbrella header "NodeExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,64 @@
+{
+  "name": "NodeExtension",
+  "version": "0.2.4",
+  "summary": "A swift extension framework of `AsyncDisplayKit`.",
+  "description": "A swift extension framework of `AsyncDisplayKit`. It also includes some convenient extensions of UIKit.",
+  "homepage": "https://github.com/dklinzh/NodeExtension",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Daniel Lin": "linzhdk@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/dklinzh/NodeExtension.git",
+    "tag": "0.2.4"
+  },
+  "requires_arc": true,
+  "platforms": {
+    "ios": "8.0"
+  },
+  "default_subspecs": "Default",
+  "subspecs": [
+    {
+      "name": "Default",
+      "dependencies": {
+        "NodeExtension/Node": [
+
+        ],
+        "NodeExtension/UIKit": [
+
+        ],
+        "NodeExtension/HUD": [
+
+        ]
+      }
+    },
+    {
+      "name": "Node",
+      "dependencies": {
+        "Texture": [
+          "~> 2.5"
+        ]
+      },
+      "source_files": "NodeExtension/Classes/Node/**/*.swift"
+    },
+    {
+      "name": "UIKit",
+      "source_files": "NodeExtension/Classes/UIKit/*.swift"
+    },
+    {
+      "name": "HUD",
+      "dependencies": {
+        "NodeExtension/UIKit": [
+
+        ],
+        "MBProgressHUD": [
+          "~> 1.0"
+        ]
+      },
+      "source_files": "NodeExtension/Classes/UIKit/HUD/*.swift"
+    }
+  ]
+}

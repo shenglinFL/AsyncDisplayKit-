@@ -1,0 +1,6 @@
+framework module DLNCore {
+  umbrella header "DLNCore-umbrella.h"
+
+  export *
+  module * { export * }
+}

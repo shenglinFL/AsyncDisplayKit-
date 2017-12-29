@@ -1,0 +1,18 @@
+//
+//  DLNFoundation-Prefix.pch
+//  DLNFoundation
+//
+//  Created by Linzh on 12/22/15.
+//  Copyright © 2015 Daniel Lin. All rights reserved.
+//
+
+#ifndef DLNFoundation_Prefix_pch
+#define DLNFoundation_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "DLNFoundation.h"
+
+#endif /* DLNFoundation_Prefix_pch */

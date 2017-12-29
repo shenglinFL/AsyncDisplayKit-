@@ -1,0 +1,24 @@
+{
+  "name": "DLNCore",
+  "version": "0.3.5",
+  "summary": "It is a core part of the 'DLN' frameworks.",
+  "description": "It is a core part of the 'DLN' frameworks.",
+  "homepage": "https://github.com/dklinzh/DLNCore",
+  "license": "MIT",
+  "authors": {
+    "Daniel Lin": "linzhdk@gmail.com"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "source": {
+    "git": "https://github.com/dklinzh/DLNCore.git",
+    "tag": "0.3.5"
+  },
+  "source_files": "DLNCore/**/*.{h,m}",
+  "private_header_files": "DLNCore/Code/NSData+CommonCrypto.h",
+  "requires_arc": true,
+  "xcconfig": {
+    "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES": "YES"
+  }
+}

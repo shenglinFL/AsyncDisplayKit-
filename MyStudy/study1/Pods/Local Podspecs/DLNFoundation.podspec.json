@@ -1,0 +1,30 @@
+{
+  "name": "DLNFoundation",
+  "version": "0.5.2",
+  "summary": "A common foundation framwork for iOS development. All 'DLN' frameworks should depend on it.",
+  "description": "A common foundation framwork for iOS development. All 'DLN' frameworks should depend on it.",
+  "homepage": "https://github.com/dklinzh/DLNFoundation",
+  "license": "MIT",
+  "authors": {
+    "Daniel Lin": "linzhdk@gmail.com"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "source": {
+    "git": "https://github.com/dklinzh/DLNFoundation.git",
+    "tag": "0.5.2"
+  },
+  "source_files": "DLNFoundation/**/*.{h,m}",
+  "resources": "DLNFoundation/*.bundle",
+  "requires_arc": true,
+  "xcconfig": {
+    "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES": "YES"
+  },
+  "dependencies": {
+    "DLNCore": [
+
+    ]
+  },
+  "prefix_header_file": "DLNFoundation/DLNFoundation-Prefix.pch"
+}
