@@ -8,6 +8,7 @@
 
 import AsyncDisplayKit
 
+
 class CustomNode: ASDisplayNode {
     private let timeLineLineImage: ASImageNode = {
         let imageNode = ASImageNode()
@@ -32,14 +33,6 @@ class CustomNode: ASDisplayNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        
-//        let insetSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1), child: timeLinePointImage)
-//
-//        timeLineLineImage.style.preferredSize = CGSize(width: 1, height: 100)
-//        timeLineLineImage.style.layoutPosition = CGPoint(x: 100, y: 100)
-//
-//        let spec = ASOverlayLayoutSpec(child: self.timeLineLineImage, overlay: insetSpec)
-//        let specAll = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .center, alignItems: .center, children: [spec])
         
         timeLineLineImage.style.preferredSize = CGSize(width: 3, height: 100)
         timeLineLineImage.style.layoutPosition = CGPoint(x: 0, y: 0)

@@ -1,5 +1,24 @@
 PODS:
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - DLNCore (0.3.5)
+  - DLNFoundation (0.5.2):
+    - DLNCore
   - KMCGeigerCounter (0.2.2)
+  - MBProgressHUD (1.1.0)
+  - NodeExtension (0.2.4):
+    - NodeExtension/Default (= 0.2.4)
+  - NodeExtension/Default (0.2.4):
+    - NodeExtension/HUD
+    - NodeExtension/Node
+    - NodeExtension/UIKit
+  - NodeExtension/HUD (0.2.4):
+    - MBProgressHUD (~> 1.0)
+    - NodeExtension/UIKit
+  - NodeExtension/Node (0.2.4):
+    - Texture (~> 2.5)
+  - NodeExtension/UIKit (0.2.4)
   - PINCache (3.0.1-beta.5):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.5)
     - PINCache/Core (= 3.0.1-beta.5)
@@ -15,6 +34,7 @@ PODS:
   - PINRemoteImage/PINCache (3.0.0-beta.12):
     - PINCache (= 3.0.1-beta.5)
     - PINRemoteImage/Core
+  - SkeletonView (1.0.4)
   - SnapKit (4.0.0)
   - Texture (2.5.1):
     - Texture/PINRemoteImage (= 2.5.1)
@@ -26,20 +46,56 @@ PODS:
   - UITableView+FDTemplateLayoutCell (1.6)
 
 DEPENDENCIES:
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
+  - DLNCore (from `https://github.com/dklinzh/DLNCore.git`)
+  - DLNFoundation (from `https://github.com/dklinzh/DLNFoundation.git`)
   - KMCGeigerCounter
+  - NodeExtension (from `https://github.com/dklinzh/NodeExtension.git`, branch `objc`)
+  - SkeletonView (~> 1.0.4)
   - SnapKit (~> 4.0.0)
   - Texture (~> 2.5.1)
   - UITableView+FDTemplateLayoutCell (~> 1.6)
 
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+  DLNCore:
+    :git: https://github.com/dklinzh/DLNCore.git
+  DLNFoundation:
+    :git: https://github.com/dklinzh/DLNFoundation.git
+  NodeExtension:
+    :branch: objc
+    :git: https://github.com/dklinzh/NodeExtension.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
+    :git: https://github.com/ViccAlexander/Chameleon.git
+  DLNCore:
+    :commit: 4adba0f10a6520f5816a92a6469e8fa00639e5fa
+    :git: https://github.com/dklinzh/DLNCore.git
+  DLNFoundation:
+    :commit: 4ef374623a67cae83deb30d891076b35d7cb8a8b
+    :git: https://github.com/dklinzh/DLNFoundation.git
+  NodeExtension:
+    :commit: 042fd8755418555f448e1f7e5291acba500fbafc
+    :git: https://github.com/dklinzh/NodeExtension.git
+
 SPEC CHECKSUMS:
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  DLNCore: d74ef25f3571c18f27b87fbc8c44dc0aced435b5
+  DLNFoundation: 665aa6eba03ae8e8b03b16755095188a2ab2e587
   KMCGeigerCounter: f8cc3c4aa19fc6f8cec168fb03b364b84c118a7a
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  NodeExtension: 303733940391ab6f84fe2f49336a000675117b0c
   PINCache: 98e7b1ef782824ad231ade51987c218b758c30d8
   PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
   PINRemoteImage: 0cefe720c2612960bd360710efbd6c73a1991d5f
+  SkeletonView: 933a9442b08c3550f61c2ae38a02456a74ad86f4
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Texture: c3f06e344aa091667b7a56002e525cde674d021a
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
 
-PODFILE CHECKSUM: 7a0d91a0d7d1882f6860ae0a8e8c74380d928c00
+PODFILE CHECKSUM: 9cbcdd4cb4e5cc35d8b571d4834fc324b6d5b0bc
 
 COCOAPODS: 1.3.1

@@ -22,6 +22,7 @@ class TodoTestViewController: UIViewController ,UITableViewDelegate ,UITableView
         tableView.register(TodoTableViewCell.self, forCellReuseIdentifier: "todoCell")
         tableView.estimatedRowHeight = 100
         self.view.addSubview(tableView)
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -36,6 +37,7 @@ class TodoTestViewController: UIViewController ,UITableViewDelegate ,UITableView
         let cell: TodoTableViewCell? = tableView.dequeueReusableCell(withIdentifier: "todoCell") as? TodoTableViewCell
         
         cell!.setWithModel(index: indexPath.row)
+
         return cell!
     }
     

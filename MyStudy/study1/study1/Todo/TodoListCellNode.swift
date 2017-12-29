@@ -7,92 +7,101 @@
 //
 
 import AsyncDisplayKit
-
+import NodeExtension
+import ChameleonFramework
 class TodoListCellNode: ASCellNode {
     
 //    private let _attributes = [NSAttributedStringKey.foregroundColor: UIColor.blue,
 //                                              NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)]
     
-    private let todoTypeImageNode: ASImageNode = {
-        let imageNode = ASImageNode()
-        imageNode.contentMode = .center
-        imageNode.isLayerBacked = true
-        return imageNode
-    }()
+    private var _contentsArray = [ASTextNode]()
+    private var _circularArray = [ASImageNode]()
+    private var _topLineArray = [ASImageNode]()
+    private var _bottomLineArray = [ASImageNode]()
+    private var length = 2
+    private var bottomSpecArray = [ASLayoutSpec]()
     
-    private let timeIconImageNode: ASImageNode = {
+    internal let dataContents: [String] = ["撒地方卡的时间福利卡都是发的说法是否撒地方卡的时间福利卡都是发的说法是否撒地方卡的时间福利卡都是发的说法是否撒地方卡的时间福利卡都是发的说法是否", "撒地方卡的时间福利卡都是发的说法是否😭😄😭😄😭😄😭😄😭😄😭😄😭😄😭😄😭😄😭😄😭😄😭😄😭😄😭😄😭😄😭😄😭😄😭"]
+    
+    private var circularImage: ASImageNode { // MARK: 这里的写法 var和let？
+        let circularImage = ASImageNode()
+        circularImage.image = UIImage.as_resizableRoundedImage(withCornerRadius: 3.5, cornerColor: .clear, fill: HexColor("EBEBEB")!)
+        circularImage.style.preferredSize = CGSize(width: 7, height: 7)
+        circularImage.isLayerBacked = true
+        return circularImage
+    }
+    
+    private let titleTimeIcon: ASImageNode = {
         let imageNode = ASImageNode()
         imageNode.image = UIImage.as_imageNamed("icon_time_img")
+        imageNode.style.preferredSize = CGSize(width: 15, height: 15)
         imageNode.isLayerBacked = true
         return imageNode
     }()
     
-    private let timeTextNode: ASTextNode = {
+    private let titleTextNode: ASTextNode = {
         let textNode = ASTextNode()
-        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)]
-        textNode.attributedText = NSMutableAttributedString(string: "--", attributes: attributes)
         textNode.isLayerBacked = true
         return textNode
     }()
     
-    private let treatTypeTextNode: ASTextNode = {
+    private let itemTreatType: ASTextNode = {
         let textNode = ASTextNode()
-        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.brown, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)]
-        textNode.attributedText = NSMutableAttributedString(string: "--", attributes: attributes)
         textNode.isLayerBacked = true
         return textNode
     }()
     
-    private let segmentLine: ASImageNode = {
+    private let itemTodoType: ASImageNode = {
         let imageNode = ASImageNode()
-        imageNode.backgroundColor = UIColor.lightGray
-        imageNode.isLayerBacked = true
-        imageNode.style.height = ASDimensionMake(0.5)
-        return imageNode
-    }()
-    
-    private let timeLineLineImage: ASImageNode = {
-        let imageNode = ASImageNode()
-        imageNode.image = UIImage.as_imageNamed("icon_left_img1")
-        imageNode.isLayerBacked = true
-        imageNode.style.width = ASDimensionMake(0.5)
-        return imageNode
-    }()
-
-    private let timeLinePointImage: ASImageNode = {
-        let imageNode = ASImageNode()
-        imageNode.image = UIImage.as_imageNamed("icon_left_img2")
+        imageNode.image = UIImage.as_imageNamed("icon_back_attend_img")
+        imageNode.style.preferredSize = CGSize(width: 36, height: 36)
         imageNode.isLayerBacked = true
         return imageNode
     }()
     
-    private let contentTextNode1: ASTextNode = {
-        let textNode = ASTextNode()
-        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)]
-        textNode.attributedText = NSMutableAttributedString(string: "--", attributes: attributes)
-        textNode.isLayerBacked = true
-        return textNode
-    }()
-    
-    private let contentTextNode2: ASTextNode = {
-        let textNode = ASTextNode()
-        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)]
-        textNode.attributedText = NSMutableAttributedString(string: "--", attributes: attributes)
-        textNode.isLayerBacked = true
-        return textNode
-    }()
+    private let segemtLine = DLHorizontalLineNode(direction: .vertical, color: HexColor("EBEBEB")!, width: 0.5)//DLVerticalLineNode(direction: .vertical, color: HexColor("EBEBEB")!, width: 0.5)
 
     convenience init(index: Int) {
         self.init()
         
         self.automaticallyManagesSubnodes = true
         
+        
+        
+        for i in 0 ..< length {
+            let itemsContent  = ASTextNode()
+            itemsContent.placeholderColor = UIColor.groupTableViewBackground
+//            itemsContent.placeholderInsets = UIEdgeInsetsMake(5, 5, 5, 5)
+            itemsContent.placeholderFadeDuration = 100
+            itemsContent.isLayerBacked = true
+            itemsContent.maximumNumberOfLines = 0
+            let paraph = NSMutableParagraphStyle()
+            paraph.lineSpacing = 9
+            let attributes = [NSAttributedStringKey.font:UIFont.systemFont(ofSize: 13),
+                              NSAttributedStringKey.paragraphStyle: paraph, NSAttributedStringKey.foregroundColor: HexColor("666666")!]
+            itemsContent.attributedText = NSAttributedString(string: dataContents[i], attributes: attributes)
+            _contentsArray.append(itemsContent)
+            
+            let circularImage = self.circularImage
+            circularImage.isLayerBacked = true
+            _circularArray.append(circularImage)
+            
+            let topLine = DLVerticalLineNode(direction: .vertical, color: HexColor("EBEBEB")!, width: 1)
+            topLine.isLayerBacked = true
+            topLine.style.flexGrow = 0
+            topLine.style.height = ASDimensionMake(10)
+            _topLineArray.append(topLine)
+            
+            let bottomLine = DLVerticalLineNode(direction: .vertical, color: HexColor("EBEBEB")!, width: 1)
+            bottomLine.isLayerBacked = true
+            _bottomLineArray.append(bottomLine)
+        }
+        
         // test
-        todoTypeImageNode.image = UIImage.as_imageNamed("icon_back_attend_img")
+        titleTextNode.attributedText = NSAttributedString.dl_attributedString(string: "2017-11-15 08:00", fontSize: 15)
+        itemTreatType.attributedText = NSAttributedString.dl_attributedString(string: "待处理", fontSize: 14)
         
-        timeTextNode.attributedText = NSMutableAttributedString.dl_attributedString(string: "2017-11-15 08:00", fontSize: 15, color: UIColor.gray)
-        treatTypeTextNode.attributedText = NSMutableAttributedString.dl_attributedString(string: "待处理", fontSize: 14, color: UIColor.brown)
-        
+
     }
     
     override init() {
@@ -100,35 +109,38 @@ class TodoListCellNode: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let specTime = ASStackLayoutSpec(direction: .horizontal, spacing: 8, justifyContent: .center, alignItems: .center, children: [timeIconImageNode, timeTextNode])
+        for i in 0 ..< length {
+            let line_circular = ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .center, children: [_topLineArray[i], _circularArray[i], _bottomLineArray[i]])
+            line_circular.style.alignSelf = .stretch
+            
+            let contentSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0), child: _contentsArray[i])
+            contentSpec.style.flexGrow = 1.0
+            contentSpec.style.flexShrink = 1.0
+            
+            let bottomSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .start, children: [line_circular, contentSpec])
+            bottomSpecArray.append(bottomSpec)
+        }
+        let bottomLayoutSpec = ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .stretch, children: bottomSpecArray)
         
-        let specTreatType = ASRelativeLayoutSpec(horizontalPosition: .end, verticalPosition: .center, sizingOption: .minimumWidth, child: treatTypeTextNode)
-        specTreatType.style.flexGrow = 1
+        // top
+        itemTreatType.style.spacingAfter = 14.0
+        let titleLayoutSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 8, justifyContent: .start, alignItems: .center, children: [titleTimeIcon, titleTextNode])
+        let topLayoutSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 8, justifyContent: .spaceBetween, alignItems: .center, children: [titleLayoutSpec, itemTreatType])
         
-        let specTitle = ASStackLayoutSpec(direction: .horizontal, spacing: 20, justifyContent: .center, alignItems: .start, children: [specTime, specTreatType])
-
-        let specTitleAll = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 14), child: specTitle)
-
-        let specTitleAndLine = ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .start, children: [specTitleAll, segmentLine])
+        // content
+        let topInsetLayoutSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0), child: topLayoutSpec)
+        let bottomInsetLayoutSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 0), child: bottomLayoutSpec)
+        let contentSpec = ASStackLayoutSpec(direction: .vertical, spacing: 12, justifyContent: .start, alignItems: .stretch, children: [topInsetLayoutSpec, segemtLine, bottomInsetLayoutSpec])
         
-        todoTypeImageNode.style.layoutPosition = CGPoint(x: 0, y: 0)
-        let specTodoTypeImage = ASRelativeLayoutSpec(horizontalPosition: .start, verticalPosition: .start, sizingOption: .minimumSize, child: todoTypeImageNode)
+        let contentInsetSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 12, left: 22, bottom: 13, right: 0), child: contentSpec)
         
-        timeLinePointImage.style.layoutPosition = CGPoint(x: 25, y: 15)
-        timeLinePointImage.style.preferredSize = CGSize(width: 10, height: 10)
-        let specTimeLinePoint = ASRelativeLayoutSpec(horizontalPosition: .center, verticalPosition: .center, sizingOption: .minimumSize, child: timeLinePointImage)
+        let todoTypeInset = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 0, bottom: CGFloat.infinity, right: CGFloat.infinity), child: itemTodoType)
         
-        let specleftLine1 = ASOverlayLayoutSpec(child: timeLineLineImage, overlay: specTimeLinePoint)
-        let specContentLine1 = ASStackLayoutSpec(direction: .horizontal, spacing: 12, justifyContent: .center, alignItems: .start, children: [specleftLine1, contentTextNode1])
+        let spec = ASOverlayLayoutSpec(child: contentInsetSpec, overlay: todoTypeInset)
         
-        let specTitleAndContent = ASStackLayoutSpec(direction: .vertical, spacing: 20, justifyContent: .center, alignItems: .start, children: [specTitleAndLine, specContentLine1])
-        
-        let specTitleAndContentInset = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 12, left: 22, bottom: 12, right: 14), child: specTitleAndContent)
-        
-        let specAll = ASOverlayLayoutSpec(child: specTitleAndContentInset, overlay: specTodoTypeImage)
-        
-        return specAll
+        return spec
     }
+    
     
 }
 

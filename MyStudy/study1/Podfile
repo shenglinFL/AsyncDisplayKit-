@@ -10,4 +10,11 @@ target 'study1' do
   pod 'SnapKit', '~> 4.0.0'
   pod 'UITableView+FDTemplateLayoutCell', '~> 1.6'
   pod 'KMCGeigerCounter'
+  
+  pod 'DLNCore', :git => 'https://github.com/dklinzh/DLNCore.git'
+  pod 'DLNFoundation', :git => 'https://github.com/dklinzh/DLNFoundation.git'
+  pod 'NodeExtension', :git => 'https://github.com/dklinzh/NodeExtension.git', :branch => 'objc'
+  pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
+  
+  pod 'SkeletonView', '~> 1.0.4'
 end

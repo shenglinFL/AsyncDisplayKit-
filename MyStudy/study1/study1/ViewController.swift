@@ -9,6 +9,24 @@
 import UIKit
 import AsyncDisplayKit
 import KMCGeigerCounter
+import SkeletonView
+
+extension UIView {
+    
+    @objc public func showWaitingLoader() {
+        
+        let gradient = SkeletonGradient(baseColor: UIColor(red:0.9, green:0.9, blue:0.9, alpha:1))
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: GradientDirection.leftRight)
+        self.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
+    }
+    
+    @objc public func hideWaitingLoader(){
+        
+        self.hideSkeleton(reloadDataAfter: true)
+    }
+}
+
+
 class ViewController: UIViewController ,ASTableDelegate ,ASTableDataSource{
     
     let tableNode: ASTableNode = {

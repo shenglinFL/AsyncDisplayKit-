@@ -75,5 +75,18 @@ class TodoTableViewCell: UITableViewCell {
         
         titleLabel.attributedText = NSMutableAttributedString(string: "TITLE \(index)", attributes: attributes)
         subTitleLabel.attributedText = NSMutableAttributedString(string: subTitle, attributes: attributes)
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now()+0.0) { [weak self] in
+//            guard let strongSelf = self else { return }
+//            strongSelf.titleLabel.showSkeleton()
+//            strongSelf.subTitleLabel.showSkeleton()
+//        }
+//        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) { [weak self] in
+//            guard let strongSelf = self else { return }
+//            strongSelf.titleLabel.hideSkeleton()
+//            strongSelf.subTitleLabel.hideSkeleton()
+//            strongSelf.titleLabel.attributedText = NSMutableAttributedString(string: "TITLE \(index)", attributes: attributes)
+//            strongSelf.subTitleLabel.attributedText = NSMutableAttributedString(string: subTitle, attributes: attributes)
+//        }
     }
 }
